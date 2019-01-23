@@ -18,7 +18,6 @@ public class DropBoxTransport implements ITransport {
         _context = c;
     }
 
-
     public boolean checkConnection(){
         boolean result = tokenExists();
         if(result )
@@ -27,11 +26,9 @@ public class DropBoxTransport implements ITransport {
         return result;
     }
 
-
     public void init(Context context) {
         _context = context;
     }
-
 
     public void close() {
         _context = null;
@@ -56,6 +53,10 @@ public class DropBoxTransport implements ITransport {
 
     @Override
     public void sendTxt(String replMsgId, String msg) {
+
+        if (!PreferencesHelper.getSendText())
+            return;
+
         try {
             String filename = "msg_" + Helper.getNowDTFile() + ".txt";
 
@@ -81,6 +82,9 @@ public class DropBoxTransport implements ITransport {
 
     @Override
     public void sendPhoto(String replMsgId, String file, String caption) {
+        if (!PreferencesHelper.getSendPhoto())
+            return;
+
         File f = new File(file);
         new UploadTask(DropboxClient.getClient(PreferencesHelper.getToken()), f, _context).execute();
 
@@ -88,6 +92,9 @@ public class DropBoxTransport implements ITransport {
 
     @Override
     public void sendFile(String replMsgId, String file) {
+        if (!PreferencesHelper.getSendFile())
+            return;
+
         File f = new File(file);
         new UploadTask(DropboxClient.getClient(PreferencesHelper.getToken()), f, _context).execute();
 
