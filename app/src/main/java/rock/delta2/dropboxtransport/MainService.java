@@ -24,7 +24,10 @@ public class MainService extends Service {
 
         MediatorMD.setTransport(new DropBoxTransport(this));
 
-        startActivity(new Intent(this, MainActivity.class));
+
+        Intent i = new Intent(this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
     }
 
 
@@ -36,7 +39,7 @@ public class MainService extends Service {
     protected  void startForeground(int ico, String title, int notifyId) {
 
             Notification.Builder builder = new Notification.Builder(this)
-                    .setSmallIcon(ico)
+                   // .setSmallIcon(ico)
                     .setContentTitle(title)
                     .setContentText("")
                     .setOnlyAlertOnce(true)
