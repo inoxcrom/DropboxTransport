@@ -12,6 +12,9 @@
     <string name="close">close</string>
     <string name="reset_registration">reset registration</string>
 
+
+    <string name="minimize">minimize</string>
+
     <string name="name">name</string>
 
 </resources>

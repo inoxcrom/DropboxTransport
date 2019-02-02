@@ -53,4 +53,8 @@ public class MainActivity extends AppCompatActivity {
         stopService(new Intent(this, MainService.class));
         finish();
     }
+
+    public void onMinimizeClick(View view) {
+        finish();
+    }
 }
